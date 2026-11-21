@@ -1,0 +1,79 @@
+Command: /home/student/Documents/090_honrors/CBP/verif_runs/20261107_143012_uvm_phase4/./simv -no_save +UVM_TESTNAME=soc_base_test -l sim.log
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version U-2023.03_Full64; Runtime version U-2023.03_Full64;  Nov  7 14:31 2026
+----------------------------------------------------------------
+UVM-1.1d.Synopsys
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+Addressing configuration for axi_interconnect instance tb_top.u_dut.u_main_top.u_axi_interconnect_3x15.axi_interconnect_inst
+ 0 ( 0): 40000000 / 16 -- 40000000-4000ffff
+ 1 ( 0): 40020000 / 16 -- 40020000-4002ffff
+ 2 ( 0): 40031000 / 12 -- 40031000-40031fff
+ 3 ( 0): 40033000 / 12 -- 40033000-40033fff
+ 4 ( 0): 40035000 / 12 -- 40035000-40035fff
+ 8 ( 0): 4003d000 / 12 -- 4003d000-4003dfff
+ 9 ( 0): 4003f000 / 12 -- 4003f000-4003ffff
+10 ( 0): 40041000 / 12 -- 40041000-40041fff
+*Verdi* Loading libsscore_vcs202303.so
+FSDB Dumper for VCS, Release Verdi_U-2023.03-SP1, Linux x86_64/64bit, 05/28/2023
+(C) 1996 - 2023 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'soc_base_test.fsdb'
+*Verdi* : Begin traversing the scope (tb_top), layer (0).
+*Verdi* : End of traversing.
+UVM_INFO @ 0: reporter [RNTST] Running test soc_base_test...
+UVM_INFO soc_tb/tests/soc_base_test.sv(77) @ 0: uvm_test_top [SOC_BASE_TEST] SoC Base Test started: waiting for reset release and clocks
+UVM_INFO soc_tb/env/soc_checker.sv(91) @ 225000: uvm_test_top.env.checker_h [ENC_CHECKER] Quadrature Step Match: enc_a=1, enc_b=0
+UVM_INFO soc_tb/env/soc_checker.sv(65) @ 225000: uvm_test_top.env.checker_h [GPIO_CHECKER] Match: observed=0x55555555 == expected=0x55555555
+UVM_INFO soc_tb/env/soc_checker.sv(91) @ 235000: uvm_test_top.env.checker_h [ENC_CHECKER] Quadrature Step Match: enc_a=1, enc_b=1
+UVM_INFO soc_tb/env/soc_checker.sv(91) @ 245000: uvm_test_top.env.checker_h [ENC_CHECKER] Quadrature Step Match: enc_a=0, enc_b=1
+UVM_INFO soc_tb/env/soc_checker.sv(65) @ 245000: uvm_test_top.env.checker_h [GPIO_CHECKER] Match: observed=0xaaaaaaaa == expected=0xaaaaaaaa
+UVM_INFO soc_tb/env/soc_checker.sv(91) @ 255000: uvm_test_top.env.checker_h [ENC_CHECKER] Quadrature Step Match: enc_a=0, enc_b=0
+UVM_INFO soc_tb/env/soc_checker.sv(65) @ 265000: uvm_test_top.env.checker_h [GPIO_CHECKER] Match: observed=0x00000001 == expected=0x00000001
+UVM_INFO soc_tb/env/soc_checker.sv(65) @ 285000: uvm_test_top.env.checker_h [GPIO_CHECKER] Match: observed=0x80000000 == expected=0x80000000
+UVM_INFO soc_tb/env/soc_checker.sv(65) @ 305000: uvm_test_top.env.checker_h [GPIO_CHECKER] Match: observed=0x0000005a == expected=0x0000005a
+UVM_INFO soc_tb/tests/soc_base_test.sv(96) @ 505000: uvm_test_top [SOC_BASE_TEST] SoC Base Test stimulus execution completed
+UVM_INFO /home/student/snps_tools_target/vcs/U-2023.03/etc/uvm/base/uvm_objection.svh(1274) @ 505000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO soc_tb/env/soc_checker.sv(109) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] ==================================================
+UVM_INFO soc_tb/env/soc_checker.sv(110) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] GPIO Checks   : Matches=5, Mismatches=0
+UVM_INFO soc_tb/env/soc_checker.sv(111) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] UART Checks   : Valid Samples=51
+UVM_INFO soc_tb/env/soc_checker.sv(112) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] Encoder Checks: Step Matches=4, Faults=0
+UVM_INFO soc_tb/env/soc_checker.sv(113) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] PWM Checks    : Passive Samples Observed=51
+UVM_INFO soc_tb/env/soc_checker.sv(114) @ 505000: uvm_test_top.env.checker_h [SOC_CHECKER_SUMMARY] ==================================================
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :   19
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[ENC_CHECKER]     4
+[GPIO_CHECKER]     5
+[RNTST]     1
+[SOC_BASE_TEST]     2
+[SOC_CHECKER_SUMMARY]     6
+[TEST_DONE]     1
+$finish called from file "/home/student/snps_tools_target/vcs/U-2023.03/etc/uvm/base/uvm_root.svh", line 437.
+$finish at simulation time               505000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 505000 ps
+CPU Time:      0.380 seconds;       Data structure size:   1.7Mb
+Sat Nov  7 14:31:53 2026

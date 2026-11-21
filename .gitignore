@@ -1,0 +1,28 @@
+# Synopsys VCS / Verdi outputs
+simv
+simv.*
+*.daidir/
+csrc/
+ucli.key
+vc_hdrs.h
+novas*
+verdiLog/
+verdi_config_file
+*.fsdb
+*.vcd
+*.vpd
+*.vdb/
+*.log
+!results/logs/*.log
+
+# Firmware build outputs
+firmware/build/
+*.o
+*.elf
+
+# Editors / OS / Python
+*.bak
+*.swp
+__pycache__/
+.DS_Store
+Thumbs.db

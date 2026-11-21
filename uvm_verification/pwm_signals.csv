@@ -1,0 +1,4 @@
+signal_name,direction,width
+clk,input,1
+rst,input,1
+PWM_OUT,output,1

@@ -1,0 +1,98 @@
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version U-2023.03_Full64; Runtime version U-2023.03_Full64;  Oct 31 14:28 2026
+==================================================================
+   PHASE 1: RISC-V VeeR EL2 ALIGNMENT & VERIFICATION (64 KiB MAP) 
+==================================================================
+
+--- Test 1: Reset Release & Core Clock Propagation ---
+Addressing configuration for axi_interconnect instance tb_soc_top.dut.u_main_top.u_axi_interconnect_3x15.axi_interconnect_inst
+ 0 ( 0): 40000000 / 16 -- 40000000-4000ffff
+ 1 ( 0): 40020000 / 16 -- 40020000-4002ffff
+ 2 ( 0): 40031000 / 12 -- 40031000-40031fff
+ 3 ( 0): 40033000 / 12 -- 40033000-40033fff
+ 4 ( 0): 40035000 / 12 -- 40035000-40035fff
+ 8 ( 0): 4003d000 / 12 -- 4003d000-4003dfff
+ 9 ( 0): 4003f000 / 12 -- 4003f000-4003ffff
+10 ( 0): 40041000 / 12 -- 40041000-40041fff
+[PASS] Core reset release: rst is de-asserted and clk active
+[PASS] Core halt status is low (core active out of reset)
+
+--- Test 2: AXI Instruction Fetch from IMEM (0x4000_0000) ---
+[PASS] IFU issues AXI read request
+[PASS] IFU fetch target matches reset vector (0x4000_0000)
+[PASS] IFU 64b downconverter drives interconnect s00_axi AR channel
+
+--- Test 3: Core Instruction Retirement Trace ---
+    [TRACE T=425000] Core retired PC: 0x40000000, Insn: 0x400200b7
+    Observed instruction trace at PC: 0x40000000, instruction: 0x400200b7
+[PASS] Processor executes and retires first instruction
+[PASS] Executed instruction PC matches IMEM base (0x4000_0000)
+
+--- Test 4: DMEM 64 KiB Base & Upper Boundary Access ---
+    [TRACE T=855000] Core retired PC: 0x40000004, Insn: 0x05a00113
+    [TRACE T=1285000] Core retired PC: 0x40000008, Insn: 0x0020a023
+    [TRACE T=1755000] Core retired PC: 0x4000000c, Insn: 0x0000a183
+    [TRACE T=2235000] Core retired PC: 0x40000010, Insn: 0x400303b7
+    [TRACE T=2665000] Core retired PC: 0x40000014, Insn: 0x0a500493
+    [TRACE T=3095000] Core retired PC: 0x40000018, Insn: 0xfe93ae23
+[PASS] Processor LSU executed store to DMEM base at 0x4002_0000
+[PASS] DMEM base word 0 contains stored value 0x5A
+[PASS] Processor LSU executed store to DMEM upper boundary at 0x4002_FFFC
+[PASS] DMEM boundary word 16383 contains stored value 0xA5
+[PASS] No memory aliasing: word 0 and word 16383 maintain independent data in 64 KiB DMEM
+
+--- Test 5: IMEM 64 KiB Upper Boundary (0x4000_FFFC) Execution ---
+    [TRACE T=3565000] Core retired PC: 0x4000001c, Insn: 0xffc3a403
+    [TRACE T=4045000] Core retired PC: 0x40000020, Insn: 0x40031237
+    [TRACE T=4475000] Core retired PC: 0x40000024, Insn: 0x00222023
+    [BUS T=4705000] Interconnect routed store to GPIO: addr=0x40031000, data=0x0000005a
+    [TRACE T=4955000] Core retired PC: 0x40000028, Insn: 0x400102b7
+    [TRACE T=5375000] Core retired PC: 0x4000002c, Insn: 0xffc28067
+    [TRACE T=5795000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+    Observed upper boundary retirement at PC: 0x4000fffc, Insn: 0x0000006f
+[PASS] Processor successfully jumped to and retired instruction at IMEM upper boundary (0x4000_FFFC)
+
+--- Test 6: Memory-Mapped Peripheral Access by Core (GPIO 0x4003_1000) ---
+[PASS] AXI interconnect routed processor store to S2 (GPIO 0x4003_1000)
+
+--- Test 7: Reserved Slots S11-S13 & Legacy Address Non-Hanging DECERR Verification ---
+[PASS] DMA write to reserved S11 (0x4004_3000) completes without hang
+[PASS] DMA write to reserved S11 returns DECERR (2'b11)
+[PASS] DMA read from reserved S11 (0x4004_3000) completes without hang
+[PASS] DMA read from reserved S11 returns DECERR (2'b11)
+[PASS] DMA read from reserved S12 (0x4004_5000) completes with DECERR (2'b11)
+[PASS] DMA read from reserved S13 (0x4004_7000) completes with DECERR (2'b11)
+    [TRACE T=6255000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+[PASS] Legacy 0x8000_4000 write completes with DECERR (2'b11) without hanging
+[PASS] Legacy 0x8000_5000 read completes with DECERR (2'b11) without hanging
+[PASS] Legacy 0x8000_6000 read completes with DECERR (2'b11) without hanging
+
+--- Test 8: Valid Active Peripheral Access via Interconnect (Timer S3) ---
+    [TRACE T=6715000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+[PASS] DMA write to Timer S3 (0x4003_3000) completed with OKAY response (2'b00)
+[PASS] DMA read from Timer S3 completed with OKAY response (2'b00)
+
+--- Test 9: Hybrid Feedback Loop (Encoder -> PID -> PWM) Intact ---
+[PASS] Enable Quadrature Encoder via AXI register 0x4003_D008
+    [TRACE T=7245000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+    [TRACE T=7665000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+    [TRACE T=8085000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+    [TRACE T=8505000] Core retired PC: 0x4000fffc, Insn: 0x0000006f
+[PASS] Encoder hardware direction indicates forward rotation (enc_dir == 1)
+[PASS] Encoder count register (0x4003_D000) increments with quadrature steps
+    Observed Encoder count readback: 10
+[PASS] PID controller hardware produces valid output signal
+[PASS] PWM hardware functional output generates active switching waveforms
+
+==================================================================
+   PHASE 1 INTEGRATION & VERIFICATION SUMMARY
+   Total Checks: 30 | Passed: 30 | Failed: 0
+==================================================================
+>>> ALL PHASE 1 RISC-V INTEGRATION & ALIGNMENT CHECKS PASSED <<<
+$finish called from file "/home/student/Documents/090_honrors/CBP/tb/tb_soc_top.sv", line 644.
+$finish at simulation time              8735000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 8735000 ps
+CPU Time:      0.120 seconds;       Data structure size:   0.8Mb
+Sat Oct 31 14:28:58 2026

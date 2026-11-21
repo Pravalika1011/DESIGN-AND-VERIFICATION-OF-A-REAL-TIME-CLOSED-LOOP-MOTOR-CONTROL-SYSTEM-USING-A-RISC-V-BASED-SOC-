@@ -1,0 +1,5 @@
+signal_name,direction,width
+clk,input,1
+rst,input,1
+gpio_io,inout,32
+gpio_intr,output,1

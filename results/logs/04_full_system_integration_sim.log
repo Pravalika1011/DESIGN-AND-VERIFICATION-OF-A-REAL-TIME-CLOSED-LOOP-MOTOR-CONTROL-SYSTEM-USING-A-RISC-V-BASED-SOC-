@@ -1,0 +1,116 @@
+Chronologic VCS simulator copyright 1991-2023
+Contains Synopsys proprietary information.
+Compiler version U-2023.03_Full64; Runtime version U-2023.03_Full64;  Oct 31 17:47 2026
+Addressing configuration for axi_interconnect instance tb_soc_full_integration.dut.u_main_top.u_axi_interconnect_3x15.axi_interconnect_inst
+ 0 ( 0): 40000000 / 16 -- 40000000-4000ffff
+ 1 ( 0): 40020000 / 16 -- 40020000-4002ffff
+ 2 ( 0): 40031000 / 12 -- 40031000-40031fff
+ 3 ( 0): 40033000 / 12 -- 40033000-40033fff
+ 4 ( 0): 40035000 / 12 -- 40035000-40035fff
+ 8 ( 0): 4003d000 / 12 -- 4003d000-4003dfff
+ 9 ( 0): 4003f000 / 12 -- 4003f000-4003ffff
+10 ( 0): 40041000 / 12 -- 40041000-40041fff
+[WAVEFORM] Enabling FSDB waveform dump -> waves/full_integration.fsdb
+*Verdi* Loading libsscore_vcs202303.so
+FSDB Dumper for VCS, Release Verdi_U-2023.03-SP1, Linux x86_64/64bit, 05/28/2023
+(C) 1996 - 2023 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'waves/full_integration.fsdb'
+*Verdi* : Begin traversing the scope (tb_soc_full_integration), layer (0).
+*Verdi* : Enable +all dumping.
+*Verdi* : End of traversing.
+*Verdi* : Begin traversing the MDAs, layer (0).
+*Verdi* : Enable +mda and +packedmda dumping.
+*Verdi* : End of traversing the MDAs.
+==================================================================
+   PHASE 5: FINAL FULL-SYSTEM FIRMWARE VERIFICATION TESTBENCH    
+==================================================================
+
+[LOAD] Preloading IMEM with /home/student/Documents/090_honrors/CBP/firmware/build/imem.hex via $readmemh...
+[LOAD] First instruction word in IMEM[0]: 0x00030117
+[PASS] IMEM preloaded: word 0 matches compiled _start instruction (0x00030117)
+
+--- Step 2: Deassert Reset & Observe Boot ---
+[PASS] Processor reset released (rst == 0)
+[PASS] Core IFU issues fetch to reset vector (0x4000_0000)
+[PASS] Interconnect routes IFU request to IMEM (s00_axi)
+
+--- Step 4: Execute Phase 5 Firmware & Monitor Mailbox in DMEM ---
+    [TRACE T=485000] Core retired PC: 0x40000000, Insn: 0x00030117
+    [TRACE T=915000] Core retired PC: 0x40000004, Insn: 0x00010113
+    [TRACE T=1345000] Core retired PC: 0x40000008, Insn: 0x00000297
+    [TRACE T=1765000] Core retired PC: 0x4000000c, Insn: 0x06828293
+    [TRACE T=2185000] Core retired PC: 0x40000010, Insn: 0x30529073
+    [TRACE T=2615000] Core retired PC: 0x40000014, Insn: 0x00020517
+    [TRACE T=3045000] Core retired PC: 0x40000018, Insn: 0xffc50513
+    [TRACE T=3465000] Core retired PC: 0x4000001c, Insn: 0x00020597
+    [TRACE T=3885000] Core retired PC: 0x40000020, Insn: 0xff458593
+    [TRACE T=4315000] Core retired PC: 0x40000024, Insn: 0x00001617
+    [TRACE T=4745000] Core retired PC: 0x40000028, Insn: 0xd1c60613
+    [TRACE T=5165000] Core retired PC: 0x4000002c, Insn: 0x00b57963
+    [TRACE T=6005000] Core retired PC: 0x4000003e, Insn: 0x00020517
+    [TRACE T=6435000] Core retired PC: 0x40000042, Insn: 0xfd250513
+    [TRACE T=6865000] Core retired PC: 0x40000046, Insn: 0x00020597
+    [TRACE T=7285000] Core retired PC: 0x4000004a, Insn: 0xfda58593
+    [TRACE T=7705000] Core retired PC: 0x4000004e, Insn: 0x00b57663
+    [TRACE T=8135000] Core retired PC: 0x40000052, Insn: 0x00052023
+    [TRACE T=8145000] Core retired PC: 0x40000056, Insn: 0x00000511
+    [TRACE T=8605000] Core retired PC: 0x40000058, Insn: 0x0000bfdd
+    [TRACE T=9225000] Core retired PC: 0x4000004e, Insn: 0x00b57663
+    [TRACE T=9445000] Core retired PC: 0x40000052, Insn: 0x00052023
+    [TRACE T=10115000] Core retired PC: 0x40000056, Insn: 0x00000511
+    [TRACE T=10125000] Core retired PC: 0x40000058, Insn: 0x0000bfdd
+    [TRACE T=10535000] Core retired PC: 0x4000004e, Insn: 0x00b57663
+
+====================================================
+   CBP RISC-V SoC: Phase 5 Full-System Verification   
+====================================================
+[PASS] GPIO Direction & MMIO Write Verified
+[PASS] Timer Countdown Verified
+    [EXC/INT T=820875000] Core event: PC=0x400001a0, Insn=0x0000c789, is_int=1, ecause=11, tval=0x00000000, ext_req[5:1]=00100
+[PASS] Timer External Interrupt Serviced via PIC (Count=1)
+[PASS] Quadrature Encoder Configured & Verified (Window=100)
+[PASS] PID Controller Tuned (Ver=0x00010000)
+[PASS] PWM MMIO Scratch Registers Verified
+[PASS] Hybrid Feedback Confirmed: PID Output matches PWM Duty (0)
+[PASS] Supervisory Setpoint Dynamically Updated to 1200
+
+>>> ALL PHASE 5 FULL-SYSTEM INTEGRATION TESTS PASSED <<<
+[PASS] Firmware executed and wrote magic signature (0x5048354F) to DMEM[0]
+
+--- Step 5: Validate Phase 5 Integration Status Bitmask ---
+    DMEM[0] (Magic Signature): 0x5048354f
+    DMEM[1] (Status Bitmask) : 0x000001ff
+    DMEM[2] (Telemetry Result): 0x00000014
+    DMEM[3] (crt0 Exit Code) : 0x00000000
+[PASS] Bit 0: UART initialized and TX banner verified
+[PASS] Bit 1: GPIO direction, write, and readback verified
+[PASS] Bit 2: Timer initialized and countdown verified
+[PASS] Bit 3: Timer end-to-end interrupt serviced via PIC
+[PASS] Bit 4: Quadrature Encoder MMIO & configuration verified
+[PASS] Bit 5: Hardware PID gains, limits, and setpoint verified
+[PASS] Bit 6: PWM scratch registers & duty cycle MMIO verified
+[PASS] Bit 7: Hybrid closed-loop feedback verified in hardware
+[PASS] Bit 8: Dynamic supervisory setpoint update applied
+[PASS] All 9 Phase 5 subsystem checks passed (status == 0x01FF)
+[PASS] crt0 exit code is 0 (all tests passed without errors)
+
+--- Step 6: Verify Safe Core Halting ---
+    [TRACE T=2491475000] Core retired WFI/HALT at PC: 0x40000064
+[PASS] Core retired wfi / reached safe halt loop
+
+====================================================
+PHASE 5 FULL-SYSTEM FIRMWARE VERIFICATION SUMMARY
+====================================================
+Total Checks : 17
+Passed       : 17
+Failed       : 0
+====================================================
+FINAL RESULT: PASS
+====================================================
+
+$finish called from file "/home/student/Documents/090_honrors/CBP/verif_runs/20261031_1745_full_integration_evidence/tb_soc_full_integration.sv", line 545.
+$finish at simulation time           2491485000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 2491485000 ps
+CPU Time:      6.300 seconds;       Data structure size:   1.2Mb
+Sat Oct 31 17:47:23 2026

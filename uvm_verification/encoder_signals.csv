@@ -1,0 +1,13 @@
+signal_name,direction,width
+clk,input,1
+rst,input,1
+enc_a,input,1
+enc_b,input,1
+enc_index,input,1
+enc_drive_active,input,1
+enc_speed,output,16
+enc_speed_valid,output,1
+enc_count_valid,output,1
+enc_dir,output,1
+enc_fault,output,1
+enc_intr,output,1
